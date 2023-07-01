@@ -1,5 +1,6 @@
 package orm.actions;
 
+import java.util.Scanner;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -11,8 +12,9 @@ public class RemoverAluno {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("alunos");
         EntityManager manager = factory.createEntityManager();
 
-        // Identificador do aluno que será removido
-        long alunoId = 1; // Substitua 1 pelo ID do aluno que deseja remover
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Informe o ID do aluno que deseja remover: ");
+        long alunoId = scanner.nextLong();
 
         // Consulta o aluno pelo ID
         Aluno aluno = manager.find(Aluno.class, alunoId);
@@ -32,6 +34,7 @@ public class RemoverAluno {
             System.out.println("Aluno não encontrado!");
         }
 
+        scanner.close();
         manager.close();
         factory.close();
     }
