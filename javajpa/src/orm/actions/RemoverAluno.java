@@ -8,31 +8,31 @@ import orm.modelo.Aluno;
 public class RemoverAluno {
 
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("alunos");
-        EntityManager em = emf.createEntityManager();
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("alunos");
+        EntityManager manager = factory.createEntityManager();
 
         // Identificador do aluno que será removido
         long alunoId = 1; // Substitua 1 pelo ID do aluno que deseja remover
 
         // Consulta o aluno pelo ID
-        Aluno aluno = em.find(Aluno.class, alunoId);
+        Aluno aluno = manager.find(Aluno.class, alunoId);
 
         if (aluno != null) {
             // Iniciar uma transação
-            em.getTransaction().begin();
+            manager.getTransaction().begin();
 
             // Remover o aluno do banco de dados
-            em.remove(aluno);
+            manager.remove(aluno);
 
             // Commit da transação
-            em.getTransaction().commit();
+            manager.getTransaction().commit();
 
             System.out.println("Aluno removido com sucesso!");
         } else {
             System.out.println("Aluno não encontrado!");
         }
 
-        em.close();
-        emf.close();
+        manager.close();
+        factory.close();
     }
 }
