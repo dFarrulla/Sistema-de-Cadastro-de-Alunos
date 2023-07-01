@@ -1,6 +1,7 @@
 package orm.actions;
 
 import java.util.List;
+import java.util.Scanner;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -12,7 +13,9 @@ public class ListarAlunosPorLetraInicial {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("alunos");
         EntityManager manager = factory.createEntityManager();
 
-       String letraInicial = "B"; // Substitua "B" pela letra desejada ou adicione lógica para ler do usuário
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Consultar alunos começando pela letra: ");
+        String letraInicial = scanner.nextLine();
 
         // Consulta para listar os alunos filtrados pela letra inicial do nome
         List<Aluno> alunos = manager.createQuery("SELECT a FROM Aluno a WHERE LOWER(a.nome) LIKE :letraInicial", Aluno.class)
@@ -30,7 +33,8 @@ public class ListarAlunosPorLetraInicial {
             System.out.println("----------------------");
         }
 
-       manager.close();
-       factory.close();
+        scanner.close();
+        manager.close();
+        factory.close();
     }
 }
