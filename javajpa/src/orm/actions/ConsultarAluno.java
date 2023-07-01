@@ -12,8 +12,8 @@ public class ConsultarAluno {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("alunos");
         EntityManager manager = factory.createEntityManager();
 
-        Scanner sc = new Scanner(System.in);
-        System.out.print("ID (para busca): ");
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Buscar po ID: ");
         Long id = sc.nextLong();
 
         try {
@@ -31,7 +31,7 @@ public class ConsultarAluno {
                 System.out.println("Aluno não encontrado.");
             }
         } finally {
-            sc.close();
+            scanner.close();
             manager.close();
             factory.close();
         }
