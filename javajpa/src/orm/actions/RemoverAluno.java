@@ -20,13 +20,8 @@ public class RemoverAluno {
         Aluno aluno = manager.find(Aluno.class, alunoId);
 
         if (aluno != null) {
-            // Iniciar uma transação
             manager.getTransaction().begin();
-
-            // Remover o aluno do banco de dados
             manager.remove(aluno);
-
-            // Commit da transação
             manager.getTransaction().commit();
 
             System.out.println("Aluno removido com sucesso!");
